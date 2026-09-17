@@ -1,0 +1,20 @@
+export const siteConfig = {
+  name: "Yuvika Sharma",
+  role: "Brand & Creative Strategy",
+  positioning: "Branding × Content × Creative Strategy",
+  tagline: "Where strategic thinking meets creative storytelling to build brands people remember.",
+  url: "https://yuvikasharma.com",
+  ogImage: "/og-image.jpg",
+  email: "yuvika.mba25@nbs.edu.in",
+  linkedin: "https://www.linkedin.com/in/yuvika-sharma-676132354/",
+  resumePath: "/Yuvika_Sharma_Resume.pdf",
+  location: "Ahmedabad, India",
+  institution: "Narayana Business School",
+  navLinks: [
+    { href: "/", label: "Home" },
+    { href: "/work", label: "Work" },
+    { href: "/about", label: "About" },
+    { href: "/experience", label: "Experience" },
+    { href: "/contact", label: "Contact" },
+  ],
+};

@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-warm: #FAF8F5;
+    --bg-surface: #FFFFFF;
+    --bg-subtle: #F2EFE9;
+    --text-primary: #121316;
+    --text-secondary: #5F6368;
+    --text-muted: #8C8F96;
+    --accent: #FF3E1D;
+    --accent-hover: #E03112;
+    --accent-soft: rgba(255, 62, 29, 0.08);
+    --border-light: #E7E3DA;
+    --border-strong: #121316;
+  }
+
+  body {
+    background-color: var(--bg-warm);
+    color: var(--text-primary);
+    font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Editorial Typography Utilities */
+.font-display {
+  font-family: var(--font-serif), Georgia, serif;
+}
+
+.font-sans-clean {
+  font-family: var(--font-sans), sans-serif;
+}
+
+/* Editorial Section Numbering */
+.editorial-num {
+  font-family: var(--font-sans), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* Hairline Editorial Borders */
+.border-editorial {
+  border-color: var(--border-light);
+}
+
+/* Editorial Grid Accent Lines */
+.editorial-rule {
+  height: 1px;
+  background-color: var(--border-light);
+  width: 100%;
+}
+
+/* Custom Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D9D5CC;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #B8B3A8;
+}
+
+/* Subtle link underline animation */
+.hover-underline-accent {
+  position: relative;
+}
+
+.hover-underline-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background-color: var(--accent);
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-underline-accent:hover::after {
+  width: 100%;
+}
