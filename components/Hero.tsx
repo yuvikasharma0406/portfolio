@@ -1,30 +1,34 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import Button from "@/components/Button";
-import { motion, type Variants } from "framer-motion";
+import { motion, type Variants, useReducedMotion } from "framer-motion";
+import { EASE_EXPO } from "@/components/motion/MotionFade";
 
 export default function Hero() {
+  const shouldReduceMotion = useReducedMotion();
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
+        staggerChildren: shouldReduceMotion ? 0 : 0.08,
         delayChildren: 0.05,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 24 },
+    hidden: shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.55, ease: [0.215, 0.61, 0.355, 1] },
+      transition: { duration: shouldReduceMotion ? 0.2 : 0.6, ease: EASE_EXPO },
     },
   };
+
 
   return (
     <section className="relative pt-12 pb-20 sm:pt-16 sm:pb-28 lg:pt-20 lg:pb-32 overflow-hidden border-b border-[#E7E3DA]">

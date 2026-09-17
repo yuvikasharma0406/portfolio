@@ -48,7 +48,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="en" className={`${plusJakarta.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
       <body className="min-h-screen bg-[#FAF9F6] text-[#141517] font-sans antialiased selection:bg-[#FF4D2E] selection:text-white flex flex-col justify-between">
         <Navbar />
         <main className="flex-grow">{children}</main>

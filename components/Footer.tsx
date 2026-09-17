@@ -1,116 +1,100 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight, Mail, FileText } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { LinkedInIcon } from "@/components/Icons";
 import { portfolioData } from "@/data/portfolio";
 
+const NAV = [
+  { href: "/", label: "Index" },
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { personal } = portfolioData;
 
   return (
-    <footer className="border-t border-[#E7E3DA] bg-[#F2EFE9] text-[#121316] pt-16 pb-12 mt-12">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-[#E7E3DA]">
-          {/* Big Editorial Statement */}
-          <div className="md:col-span-6 space-y-5">
-            <span className="editorial-num">
-              [ Connect ]
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-display font-normal tracking-tight leading-snug">
-              Have a brand to build, a story to tell, or a creative campaign in mind?
-            </h2>
-            <p className="text-sm text-[#5F6368] max-w-md leading-relaxed">
-              Open for brand communication, content strategy, campaign direction, and creative roles.
+    <footer className="bg-[#121316] text-[#FAF8F5]">
+
+      {/* ── Upper: Name, discipline, links ──────────── */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 pt-14 pb-12 border-b border-white/8">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+
+          {/* Identity */}
+          <div className="space-y-3">
+            <Link
+              href="/"
+              className="flex items-center gap-3 group w-fit"
+            >
+              <div className="w-9 h-9 rounded-full bg-[#FF3E1D] text-white flex items-center justify-center font-display italic text-base">
+                Y
+              </div>
+              <div>
+                <span className="block font-semibold text-base tracking-tight text-white group-hover:text-[#FF3E1D] transition-colors">
+                  Yuvika Sharma
+                </span>
+                <span className="block text-[11px] uppercase tracking-[0.18em] text-[#6B7280]">
+                  Branding <span className="text-[#FF3E1D]">×</span> Content{" "}
+                  <span className="text-[#FF3E1D]">×</span> Creative Strategy
+                </span>
+              </div>
+            </Link>
+
+            <p className="text-xs text-[#4B5563] max-w-xs leading-relaxed">
+              MBA (Marketing) · Narayana Business School, Ahmedabad
             </p>
-            <div className="pt-2">
-              <a
-                href={`mailto:${portfolioData.personal.email}`}
-                className="inline-flex items-center gap-2 text-base sm:text-lg font-medium text-[#121316] hover:text-[#FF3E1D] underline underline-offset-8 decoration-1 transition-colors"
-              >
-                <Mail className="w-4 h-4 text-[#FF3E1D]" />
-                <span>{portfolioData.personal.email}</span>
-              </a>
-            </div>
           </div>
 
-          {/* Quick Navigation Links */}
-          <div className="md:col-span-3 space-y-4">
-            <h3 className="text-[11px] font-semibold tracking-widest uppercase text-[#8C8F96]">
-              Navigation
-            </h3>
-            <ul className="space-y-2.5 text-xs uppercase tracking-wider font-medium">
-              <li>
-                <Link href="/" className="hover:text-[#FF3E1D] transition-colors">
-                  Index
-                </Link>
-              </li>
-              <li>
-                <Link href="/work" className="hover:text-[#FF3E1D] transition-colors">
-                  Selected Work
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-[#FF3E1D] transition-colors">
-                  About &amp; Perspective
-                </Link>
-              </li>
-              <li>
-                <Link href="/experience" className="hover:text-[#FF3E1D] transition-colors">
-                  Experience &amp; Roles
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#FF3E1D] transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* Contact links */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <a
+              href={`mailto:${personal.email}`}
+              className="group inline-flex items-center gap-2 text-sm text-[#9CA3AF] hover:text-white transition-colors"
+            >
+              <Mail className="w-4 h-4 text-[#FF3E1D] shrink-0" />
+              <span className="break-all">{personal.email}</span>
+            </a>
 
-          {/* Social & Resources Column */}
-          <div className="md:col-span-3 space-y-4">
-            <h3 className="text-[11px] font-semibold tracking-widest uppercase text-[#8C8F96]">
-              Network &amp; Files
-            </h3>
-            <ul className="space-y-3 text-xs uppercase tracking-wider font-medium">
-              <li>
-                <a
-                  href={portfolioData.personal.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-[#FF3E1D] transition-colors"
-                >
-                  <LinkedInIcon className="w-4 h-4 text-[#0077B5]" />
-                  <span>LinkedIn Profile</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#8C8F96]" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={portfolioData.personal.resumeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 hover:text-[#FF3E1D] transition-colors"
-                >
-                  <FileText className="w-4 h-4 text-[#FF3E1D]" />
-                  <span>Download Resume (PDF)</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-[#8E8B82]" />
-                </a>
-              </li>
-              <li className="pt-2 text-xs normal-case text-[#8C8F96] leading-relaxed">
-                MBA + PGPCE (Marketing)<br />
-                Narayana Business School, Ahmedabad
-              </li>
-            </ul>
+            <span className="hidden sm:inline text-[#374151]">·</span>
+
+            <a
+              href={personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-[#9CA3AF] hover:text-white transition-colors"
+            >
+              <LinkedInIcon className="w-4 h-4 text-[#60A5FA] shrink-0" />
+              <span>LinkedIn</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-50" />
+            </a>
           </div>
         </div>
+      </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#8C8F96]">
-          <p>© {currentYear} Yuvika Sharma. Designed with an editorial perspective.</p>
-          <p className="flex items-center gap-1.5 tracking-wider uppercase text-[11px]">
-            Branding <span className="text-[#FF3E1D]">×</span> Content <span className="text-[#FF3E1D]">×</span> Creative Strategy
+      {/* ── Lower: Nav + copyright ───────────────────── */}
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 py-7">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-5">
+
+          {/* Navigation */}
+          <nav className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            {NAV.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-[11px] uppercase tracking-wider text-[#4B5563] hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Copyright */}
+          <p className="text-[11px] text-[#374151]">
+            © {currentYear} Yuvika Sharma
           </p>
         </div>
       </div>

@@ -1,8 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { MessageSquare, Feather, Share2, Compass } from "lucide-react";
+import { EASE_EXPO } from "@/components/motion/MotionFade";
 
 const CAPABILITIES = [
   {
@@ -36,6 +37,8 @@ const CAPABILITIES = [
 ];
 
 export default function WhatIDo() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="py-24 sm:py-32 bg-[#FAF8F5] border-b border-[#E7E3DA]">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
@@ -51,23 +54,28 @@ export default function WhatIDo() {
             return (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+                whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="bg-white rounded-3xl border border-[#E7E3DA] p-8 sm:p-10 space-y-6 hover:border-[#121316] hover:shadow-md transition-all duration-300 flex flex-col justify-between group"
+                transition={{ duration: shouldReduceMotion ? 0.2 : 0.52, delay: shouldReduceMotion ? 0 : idx * 0.09, ease: EASE_EXPO }}
+                whileHover={shouldReduceMotion ? {} : { y: -3 }}
+                className="bg-white rounded-3xl border border-[#E7E3DA] p-8 sm:p-10 space-y-6 hover:border-[#121316] hover:shadow-lg transition-[border-color,box-shadow] duration-300 flex flex-col justify-between group"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <span className="font-display text-2xl text-[#FF3E1D] italic">
                       {item.num}
                     </span>
-                    <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#121316] group-hover:bg-[#FF3E1D] group-hover:text-white transition-colors">
+                    <motion.div
+                      className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#121316] group-hover:bg-[#FF3E1D] group-hover:text-white transition-colors duration-200"
+                      whileHover={shouldReduceMotion ? {} : { rotate: 8, scale: 1.05 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                    >
                       <Icon className="w-4 h-4" />
-                    </div>
+                    </motion.div>
                   </div>
 
-                  <h3 className="text-2xl font-display font-normal text-[#121316] group-hover:text-[#FF3E1D] transition-colors">
+                  <h3 className="text-2xl font-display font-normal text-[#121316] group-hover:text-[#FF3E1D] transition-colors duration-200">
                     {item.title}
                   </h3>
 
@@ -94,3 +102,4 @@ export default function WhatIDo() {
     </section>
   );
 }
+

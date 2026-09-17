@@ -1,8 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Sparkles, Eye, BookOpen, Music, Compass } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import { EASE_EXPO } from "@/components/motion/MotionFade";
+
 
 const OBSERVATIONS = [
   {

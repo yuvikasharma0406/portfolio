@@ -2,8 +2,17 @@
 
 import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, FileText, ArrowUpRight, Copy, Check, Send, Sparkles } from "lucide-react";
+import {
+  Mail,
+  FileText,
+  ArrowUpRight,
+  Copy,
+  Check,
+  Send,
+  MapPin,
+} from "lucide-react";
 import { LinkedInIcon } from "@/components/Icons";
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
   const { personal } = portfolioData;
@@ -20,170 +29,213 @@ export default function ContactPage() {
   const handleMailto = (e: React.FormEvent) => {
     e.preventDefault();
     const mailtoUrl = `mailto:${personal.email}?subject=${encodeURIComponent(
-      subject || "Creative Strategy / Brand Collaboration Inquiry"
+      subject || "Brand / Creative Collaboration"
     )}&body=${encodeURIComponent(message)}`;
     window.location.href = mailtoUrl;
   };
 
-  return (
-    <div className="py-12 sm:py-20 bg-[#FAF9F6]">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Page Header */}
-        <div className="max-w-4xl space-y-4 mb-16">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FF4D2E]">
-            Get In Touch
-          </span>
-          <h1 className="text-4xl sm:text-6xl font-serif font-normal text-[#141517] leading-tight">
-            Let&apos;s start a conversation.
-          </h1>
-          <p className="text-lg text-[#5A5E67] font-normal leading-relaxed">
-            Whether you are building a brand from scratch, looking for a creative content strategist, or want to discuss campaigns, let&apos;s connect.
-          </p>
-        </div>
+  const fadeUp = (delay = 0) => ({
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1], delay },
+  });
 
-        {/* Contact Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Column: Direct Links & Details */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Email Card */}
-            <div className="p-8 bg-white rounded-3xl border border-[#E7E4DD] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF9F6] border border-[#E7E4DD] flex items-center justify-center text-[#FF4D2E]">
-                <Mail className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#8E8B82] block mb-1">
-                  Direct Email
-                </span>
+  return (
+    <div className="bg-[#FAF8F5] min-h-screen">
+
+      {/* ── Hero ─────────────────────────────────────── */}
+      <div className="pt-16 sm:pt-24 pb-0">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <motion.div {...fadeUp()} className="max-w-4xl space-y-5 pb-16 border-b border-[#E7E3DA]">
+            <span className="editorial-num">[ Get In Touch ]</span>
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-display font-normal text-[#121316] leading-[1.02] tracking-tight">
+              Let&apos;s make something{" "}
+              <span className="italic text-[#FF3E1D]">worth noticing.</span>
+            </h1>
+            <p className="text-lg sm:text-xl text-[#5F6368] max-w-2xl font-normal leading-relaxed pt-2">
+              Open to brand communication, creative strategy, content roles, and
+              collaborative projects. If you&apos;re building something interesting —
+              let&apos;s talk.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── Main Content ─────────────────────────────── */}
+      <div className="py-16 sm:py-24">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+            {/* ── Left: Contact Cards ─────────────────── */}
+            <motion.div {...fadeUp(0.1)} className="lg:col-span-5 space-y-4">
+
+              {/* Email */}
+              <div className="p-8 bg-white rounded-3xl border border-[#E7E3DA] shadow-sm space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#FF3E1D]">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#8C8F96] block">
+                      Direct Email
+                    </span>
+                    <span className="text-sm font-semibold text-[#121316]">
+                      Preferred channel
+                    </span>
+                  </div>
+                </div>
+
                 <a
                   href={`mailto:${personal.email}`}
-                  className="text-lg font-serif font-normal text-[#141517] hover:text-[#FF4D2E] transition-colors break-all"
+                  className="block text-base sm:text-lg font-display text-[#121316] hover:text-[#FF3E1D] transition-colors break-all underline underline-offset-4 decoration-[#E7E3DA] hover:decoration-[#FF3E1D]"
                 >
                   {personal.email}
                 </a>
-              </div>
-              <div>
+
                 <button
                   onClick={handleCopyEmail}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#FF4D2E] hover:underline cursor-pointer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#5F6368] hover:text-[#FF3E1D] transition-colors cursor-pointer"
                 >
                   {copied ? (
                     <>
                       <Check className="w-3.5 h-3.5 text-[#10B981]" />
-                      <span>Email Copied!</span>
+                      <span>Copied to clipboard</span>
                     </>
                   ) : (
                     <>
                       <Copy className="w-3.5 h-3.5" />
-                      <span>Copy Address</span>
+                      <span>Copy address</span>
                     </>
                   )}
                 </button>
               </div>
-            </div>
 
-            {/* LinkedIn Card */}
-            <div className="p-8 bg-white rounded-3xl border border-[#E7E4DD] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF9F6] border border-[#E7E4DD] flex items-center justify-center text-[#0077B5]">
-                <LinkedInIcon className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#8E8B82] block mb-1">
-                  Professional Network
-                </span>
-                <h3 className="text-lg font-serif font-normal text-[#141517]">
-                  LinkedIn
-                </h3>
-              </div>
+              {/* LinkedIn */}
               <a
                 href={personal.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#141517] hover:text-[#FF4D2E] transition-colors"
+                className="group flex items-center justify-between p-6 bg-white rounded-3xl border border-[#E7E3DA] shadow-sm hover:border-[#121316] transition-all duration-200"
               >
-                <span>Connect on LinkedIn</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#EBF5FB] flex items-center justify-center">
+                    <LinkedInIcon className="w-5 h-5 text-[#0077B5]" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#8C8F96] block">
+                      Connect
+                    </span>
+                    <span className="text-sm font-semibold text-[#121316]">
+                      LinkedIn Profile
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-[#8C8F96] group-hover:text-[#121316] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
-            </div>
 
-            {/* Resume Card */}
-            <div className="p-8 bg-white rounded-3xl border border-[#E7E4DD] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-xl bg-[#FAF9F6] border border-[#E7E4DD] flex items-center justify-center text-[#FF4D2E]">
-                <FileText className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-[#8E8B82] block mb-1">
-                  Curriculum Vitae
-                </span>
-                <h3 className="text-lg font-serif font-normal text-[#141517]">
-                  Official Resume
-                </h3>
-              </div>
+              {/* Resume */}
               <a
                 href={personal.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#141517] hover:text-[#FF4D2E] transition-colors"
+                className="group flex items-center justify-between p-6 bg-white rounded-3xl border border-[#E7E3DA] shadow-sm hover:border-[#121316] transition-all duration-200"
               >
-                <span>Download PDF Format</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#FF3E1D]">
+                    <FileText className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-widest text-[#8C8F96] block">
+                      Download
+                    </span>
+                    <span className="text-sm font-semibold text-[#121316]">
+                      Resume (PDF)
+                    </span>
+                  </div>
+                </div>
+                <ArrowUpRight className="w-4 h-4 text-[#8C8F96] group-hover:text-[#121316] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
               </a>
-            </div>
-          </div>
 
-          {/* Right Column: Direct Message Composer */}
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-[#E7E4DD] p-8 sm:p-12 shadow-sm space-y-6">
-              <div className="space-y-2">
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#FF4D2E]">
-                  Quick Note
+              {/* Location note */}
+              <div className="flex items-start gap-2 pt-2 text-xs text-[#8C8F96]">
+                <MapPin className="w-3.5 h-3.5 text-[#FF3E1D] mt-0.5 shrink-0" />
+                <span>
+                  Based in Ahmedabad, India — open to remote &amp; on-site opportunities.
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-serif font-normal text-[#141517]">
-                  Send a message
-                </h2>
-                <p className="text-sm text-[#6B7280]">
-                  Fill in your idea or project inquiry to immediately launch your email client with pre-filled details.
-                </p>
               </div>
+            </motion.div>
 
-              <form onSubmit={handleMailto} className="space-y-5 pt-2">
-                <div>
-                  <label htmlFor="subject" className="block text-xs font-semibold uppercase tracking-wider text-[#141517] mb-2">
-                    Subject / Topic
-                  </label>
-                  <input
-                    id="subject"
-                    type="text"
-                    value={subject}
-                    onChange={(e) => setSubject(e.target.value)}
-                    placeholder="e.g. Brand Strategy Opportunity / Creative Project"
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAF9F6] border border-[#E7E4DD] text-sm text-[#141517] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#FF4D2E] transition-colors"
-                  />
+            {/* ── Right: Mailto Form ──────────────────── */}
+            <motion.div {...fadeUp(0.2)} className="lg:col-span-7">
+              <div className="bg-white rounded-3xl border border-[#E7E3DA] p-8 sm:p-12 shadow-sm">
+                <div className="space-y-2 mb-8">
+                  <span className="text-[10px] font-semibold uppercase tracking-widest text-[#FF3E1D]">
+                    Quick Note
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-display font-normal text-[#121316]">
+                    Send a message
+                  </h2>
+                  <p className="text-sm text-[#5F6368] leading-relaxed">
+                    Fill in your subject and message below — clicking the button
+                    will open your email client with everything pre-filled.{" "}
+                    <span className="text-[#8C8F96]">
+                      No backend, no data stored.
+                    </span>
+                  </p>
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-xs font-semibold uppercase tracking-wider text-[#141517] mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Tell me a bit about your brand, role, or campaign idea..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#FAF9F6] border border-[#E7E4DD] text-sm text-[#141517] placeholder:text-[#9CA3AF] focus:outline-none focus:border-[#FF4D2E] transition-colors resize-none"
-                    required
-                  />
-                </div>
+                <form onSubmit={handleMailto} className="space-y-5">
+                  <div>
+                    <label
+                      htmlFor="contact-subject"
+                      className="block text-xs font-semibold uppercase tracking-wider text-[#121316] mb-2"
+                    >
+                      Subject / What&apos;s it about?
+                    </label>
+                    <input
+                      id="contact-subject"
+                      type="text"
+                      value={subject}
+                      onChange={(e) => setSubject(e.target.value)}
+                      placeholder="e.g. Brand collaboration / Creative role / Campaign idea"
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#FAF8F5] border border-[#E7E3DA] text-sm text-[#121316] placeholder:text-[#C4C0B6] focus:outline-none focus:border-[#121316] transition-colors"
+                    />
+                  </div>
 
-                <button
-                  type="submit"
-                  className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-[#141517] text-white text-sm font-semibold hover:bg-[#FF4D2E] transition-all duration-300 cursor-pointer shadow-sm"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>Open in Email App</span>
-                </button>
-              </form>
-            </div>
+                  <div>
+                    <label
+                      htmlFor="contact-message"
+                      className="block text-xs font-semibold uppercase tracking-wider text-[#121316] mb-2"
+                    >
+                      Your Message
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      rows={6}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Tell me a little about what you're building, what you need, or what you'd like to discuss..."
+                      className="w-full px-4 py-3.5 rounded-xl bg-[#FAF8F5] border border-[#E7E3DA] text-sm text-[#121316] placeholder:text-[#C4C0B6] focus:outline-none focus:border-[#121316] transition-colors resize-none"
+                      required
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#121316] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#FF3E1D] transition-all duration-300 cursor-pointer shadow-sm group"
+                  >
+                    <Send className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                    <span>Open in Email App</span>
+                  </button>
+
+                  <p className="text-center text-[11px] text-[#8C8F96]">
+                    This opens your default email client. No data is sent to any server.
+                  </p>
+                </form>
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </div>
