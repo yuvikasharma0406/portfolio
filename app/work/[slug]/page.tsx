@@ -17,6 +17,8 @@ import {
   Briefcase,
 } from "lucide-react";
 
+import type { Metadata } from "next";
+
 export function generateStaticParams() {
   return portfolioData.projects.map((project) => ({
     slug: project.slug,
@@ -25,6 +27,30 @@ export function generateStaticParams() {
 
 interface PageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = portfolioData.projects.find((p) => p.slug === slug);
+  if (!project) {
+    return {
+      title: "Case Study Not Found — Yuvika Sharma",
+    };
+  }
+  return {
+    title: `${project.title} — Case Study | Yuvika Sharma`,
+    description: `${project.subtitle} Strategic breakdown covering ${project.category.toLowerCase()} and verified results.`,
+    openGraph: {
+      title: `${project.title} — Yuvika Sharma`,
+      description: project.summary,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} — Yuvika Sharma`,
+      description: project.summary,
+    },
+  };
 }
 
 export default async function CaseStudyPage({ params }: PageProps) {
@@ -169,21 +195,21 @@ export default async function CaseStudyPage({ params }: PageProps) {
               What I Created &amp; Delivered
             </h2>
 
-            <div className="grid grid-cols-1 gap-6">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6">
               {project.execution.map((step, sIdx) => (
                 <div
                   key={sIdx}
-                  className="p-6 sm:p-8 rounded-2xl bg-white border border-[#E7E3DA] space-y-2 shadow-sm"
+                  className="p-5 sm:p-8 rounded-2xl bg-white border border-[#E7E3DA] space-y-2 shadow-sm"
                 >
                   <div className="flex items-baseline gap-3">
                     <span className="font-display text-lg sm:text-xl text-[#FF3E1D] italic">
                       0{sIdx + 1}
                     </span>
-                    <h3 className="text-lg sm:text-xl font-semibold text-[#121316] tracking-tight">
+                    <h3 className="text-base sm:text-xl font-semibold text-[#121316] tracking-tight">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="text-sm sm:text-base text-[#5F6368] leading-relaxed pl-8">
+                  <p className="text-sm sm:text-base text-[#5F6368] leading-relaxed pt-1 sm:pt-0 sm:pl-8">
                     {step.description}
                   </p>
                 </div>
@@ -203,11 +229,11 @@ export default async function CaseStudyPage({ params }: PageProps) {
                 {project.gallery.map((item, gIdx) => (
                   <div
                     key={gIdx}
-                    className="p-8 rounded-3xl bg-white border border-[#E7E3DA] space-y-4 flex flex-col justify-between shadow-sm group hover:border-[#121316] transition-colors"
+                    className="p-6 sm:p-8 rounded-3xl bg-white border border-[#E7E3DA] space-y-4 flex flex-col justify-between shadow-sm group hover:border-[#121316] transition-colors"
                   >
                     <div className="aspect-[16/10] w-full rounded-2xl bg-[#FAF8F5] border border-dashed border-[#D9D5CC] flex flex-col items-center justify-center p-6 text-center space-y-2 group-hover:bg-[#F2EFE9] transition-colors">
                       <ImageIcon className="w-8 h-8 text-[#8C8F96]" />
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[#FF3E1D]">
+                      <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-[#FF3E1D]">
                         [PROJECT VISUAL TO BE ADDED]
                       </span>
                       <p className="text-xs font-medium text-[#121316]">
@@ -229,7 +255,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           )}
 
           {/* Result / Outcome (What Happened) */}
-          <section className="p-8 sm:p-12 rounded-3xl bg-[#121316] text-white space-y-4">
+          <section className="p-6 sm:p-12 rounded-3xl bg-[#121316] text-white space-y-4">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#FF3E1D]">
               <TrendingUp className="w-4 h-4" />
               <span>06 // Outcome &amp; Verified Results</span>
@@ -237,19 +263,19 @@ export default async function CaseStudyPage({ params }: PageProps) {
             <h2 className="text-2xl sm:text-4xl font-display font-normal text-white">
               What happened?
             </h2>
-            <p className="text-base sm:text-lg text-[#E5E7EB] leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-[#E5E7EB] leading-relaxed">
               {project.outcome}
             </p>
           </section>
 
           {/* Key Learning */}
           {project.learnings && (
-            <section className="p-8 sm:p-10 rounded-3xl bg-white border-l-4 border-[#FF3E1D] border-y border-r border-[#E7E3DA] space-y-3 shadow-sm">
+            <section className="p-6 sm:p-10 rounded-3xl bg-white border-l-4 border-[#FF3E1D] border-y border-r border-[#E7E3DA] space-y-3 shadow-sm">
               <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#FF3E1D]">
                 <BookOpen className="w-4 h-4" />
                 <span>07 // Core Strategic Learning</span>
               </div>
-              <blockquote className="text-lg sm:text-xl font-display italic text-[#121316] leading-relaxed">
+              <blockquote className="text-base sm:text-xl font-display italic text-[#121316] leading-relaxed">
                 &ldquo;{project.learnings}&rdquo;
               </blockquote>
             </section>
@@ -257,10 +283,10 @@ export default async function CaseStudyPage({ params }: PageProps) {
         </div>
 
         {/* Next Case Study Navigation */}
-        <footer className="mt-20 pt-12 border-t border-[#E7E3DA] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <footer className="mt-16 sm:mt-20 pt-10 sm:pt-12 border-t border-[#E7E3DA] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-6">
           <Link
             href="/work"
-            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#8C8F96] hover:text-[#121316] transition-colors"
+            className="inline-flex items-center justify-center sm:justify-start gap-2 min-h-[44px] text-xs font-semibold uppercase tracking-wider text-[#8C8F96] hover:text-[#121316] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>View all work index</span>
@@ -268,17 +294,17 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
           <Link
             href={`/work/${nextProject.slug}`}
-            className="group inline-flex items-center gap-3 p-4 sm:p-6 rounded-2xl bg-white border border-[#E7E3DA] hover:border-[#121316] transition-all shadow-sm"
+            className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-2xl bg-white border border-[#E7E3DA] hover:border-[#121316] transition-all shadow-sm"
           >
-            <div className="text-right">
+            <div className="text-left sm:text-right">
               <span className="text-[10px] uppercase tracking-widest text-[#8C8F96] block">
                 Next Case Study
               </span>
-              <span className="text-sm font-semibold text-[#121316] group-hover:text-[#FF3E1D] transition-colors">
+              <span className="text-sm font-semibold text-[#121316] group-hover:text-[#FF3E1D] transition-colors line-clamp-1">
                 {nextProject.title}
               </span>
             </div>
-            <div className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#121316] group-hover:bg-[#FF3E1D] group-hover:text-white transition-colors">
+            <div className="w-8 h-8 rounded-full bg-[#FAF8F5] border border-[#E7E3DA] flex items-center justify-center text-[#121316] group-hover:bg-[#FF3E1D] group-hover:text-white transition-colors shrink-0">
               <ArrowRight className="w-4 h-4" />
             </div>
           </Link>

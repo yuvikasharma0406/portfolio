@@ -41,26 +41,26 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 h-[68px] flex items-center justify-between">
 
         {/* Monogram Brand */}
-        <Link href="/" className="group flex items-center gap-3">
+        <Link href="/" className="group flex items-center gap-2.5 sm:gap-3 shrink-0">
           <motion.div
-            className="w-8 h-8 rounded-full bg-[#121316] text-[#FAF8F5] flex items-center justify-center font-display italic text-base"
+            className="w-8 h-8 rounded-full bg-[#121316] text-[#FAF8F5] flex items-center justify-center font-display italic text-base shrink-0"
             whileHover={shouldReduceMotion ? {} : { backgroundColor: "#FF3E1D", scale: 1.05 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
           >
             Y
           </motion.div>
           <div className="flex flex-col">
-            <span className="font-semibold text-sm tracking-tight text-[#121316] group-hover:text-[#FF3E1D] transition-colors duration-200">
+            <span className="font-semibold text-sm tracking-tight text-[#121316] group-hover:text-[#FF3E1D] transition-colors duration-200 whitespace-nowrap">
               Yuvika Sharma
             </span>
-            <span className="text-[10px] tracking-widest uppercase text-[#8C8F96] font-medium">
+            <span className="text-[9px] sm:text-[10px] tracking-widest uppercase text-[#8C8F96] font-medium hidden xs:block truncate">
               Branding × Creative Strategy
             </span>
           </div>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 text-xs uppercase tracking-wider font-medium">
+        <nav className="hidden md:flex items-center gap-6 lg:gap-7 text-xs uppercase tracking-wider font-medium">
           {NAV_LINKS.map((link) => {
             const isActive =
               link.href === "/"
@@ -110,10 +110,10 @@ export default function Navbar() {
           </motion.div>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button (Min 44px Touch Target) */}
         <motion.button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 text-[#121316] hover:text-[#FF3E1D] focus:outline-none transition-colors"
+          className="md:hidden w-11 h-11 flex items-center justify-center -mr-2 text-[#121316] hover:text-[#FF3E1D] focus:outline-none transition-colors rounded-xl"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           whileTap={shouldReduceMotion ? {} : { scale: 0.92 }}
           transition={{ duration: 0.12 }}
@@ -151,8 +151,8 @@ export default function Navbar() {
             initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
             animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
             exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
-            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] }}
-            className="md:hidden border-b border-[#E7E3DA] bg-[#FAF8F5] px-6 py-6 space-y-3 overflow-hidden"
+            transition={{ duration: 0.22, ease: [0.4, 0, 0.2, 1] as const }}
+            className="md:hidden border-b border-[#E7E3DA] bg-[#FAF8F5] px-6 py-6 space-y-2 overflow-hidden shadow-lg"
           >
             {NAV_LINKS.map((link, i) => {
               const isActive =
@@ -168,7 +168,7 @@ export default function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`block text-sm uppercase tracking-wider font-medium py-2.5 px-3 rounded-xl transition-colors ${
+                    className={`flex items-center text-sm uppercase tracking-wider font-medium min-h-[44px] px-4 rounded-2xl transition-colors ${
                       isActive
                         ? "bg-[#F0ECE5] text-[#121316] font-semibold"
                         : "text-[#5F6368] hover:text-[#121316] hover:bg-[#F5F2EC]"
@@ -183,7 +183,7 @@ export default function Navbar() {
             <div className="pt-3 border-t border-[#E7E3DA]">
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded-full text-xs font-semibold uppercase tracking-wider bg-[#121316] text-[#FAF8F5] hover:bg-[#FF3E1D] transition-colors"
+                className="flex items-center justify-center gap-2 w-full min-h-[48px] rounded-full text-xs font-semibold uppercase tracking-wider bg-[#121316] text-[#FAF8F5] hover:bg-[#FF3E1D] transition-colors shadow-sm"
               >
                 <span>Let&apos;s Talk</span>
                 <ArrowUpRight className="w-4 h-4" />

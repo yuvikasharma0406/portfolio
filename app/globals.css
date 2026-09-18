@@ -15,6 +15,11 @@
     --border-strong: #121316;
   }
 
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--bg-warm);
     color: var(--text-primary);
@@ -22,6 +27,8 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }
 
@@ -92,6 +99,12 @@
 
 .hover-underline-accent:hover::after {
   width: 100%;
+}
+
+/* Universal Accessible Focus Rings */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 /* ─── Accessibility: respect reduced motion preference ── */

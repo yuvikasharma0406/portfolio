@@ -23,26 +23,26 @@ export default function ContactCTA() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-[#121316] text-[#FAF8F5] rounded-3xl p-10 sm:p-16 lg:p-20 relative overflow-hidden"
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] as const }}
+          className="bg-[#121316] text-[#FAF8F5] rounded-3xl p-6 sm:p-14 lg:p-20 relative overflow-hidden"
         >
           {/* Decorative warm glow */}
           <div className="absolute -top-24 -right-24 w-[480px] h-[480px] bg-[#FF3E1D]/8 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-16 -left-16 w-64 h-64 bg-[#FF3E1D]/5 rounded-full blur-2xl pointer-events-none" />
 
-          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
 
             {/* Left: Headline & Description */}
-            <div className="lg:col-span-7 space-y-7">
+            <div className="lg:col-span-7 space-y-6 sm:space-y-7">
               <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#FF3E1D]">
                 [ Let&apos;s Talk ]
               </span>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-normal tracking-tight text-white leading-[1.07]">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-display font-normal tracking-tight text-white leading-[1.08] break-words">
                 Let&apos;s make something worth noticing.
               </h2>
 
-              <p className="text-base sm:text-lg text-[#9CA3AF] max-w-xl font-normal leading-relaxed">
+              <p className="text-sm sm:text-base lg:text-lg text-[#9CA3AF] max-w-xl font-normal leading-relaxed">
                 Whether you&apos;re building a brand identity from the ground up, planning a high-reach campaign, or looking for a creative strategy partner — I&apos;d love to hear about it.
               </p>
 
@@ -50,7 +50,7 @@ export default function ContactCTA() {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-2">
                 <a
                   href={`mailto:${portfolioData.personal.email}`}
-                  className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-[#FF3E1D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-white hover:text-[#121316] transition-all duration-300 shadow-lg"
+                  className="group inline-flex items-center justify-center gap-2 min-h-[48px] px-6 sm:px-7 py-3.5 rounded-full bg-[#FF3E1D] text-white text-xs font-semibold uppercase tracking-wider hover:bg-white hover:text-[#121316] transition-all duration-300 shadow-lg text-center"
                 >
                   <Mail className="w-4 h-4" />
                   <span>Send an Email</span>
@@ -58,18 +58,18 @@ export default function ContactCTA() {
 
                 <button
                   onClick={handleCopyEmail}
-                  className="group inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white/8 hover:bg-white/15 text-white text-xs font-semibold uppercase tracking-wider border border-white/12 transition-all duration-200 cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2 min-h-[48px] px-6 sm:px-7 py-3.5 rounded-full bg-white/8 hover:bg-white/15 text-white text-xs font-semibold uppercase tracking-wider border border-white/12 transition-all duration-200 cursor-pointer text-center"
                   title="Copy email address"
                 >
                   {copied ? (
                     <>
-                      <Check className="w-4 h-4 text-[#10B981]" />
+                      <Check className="w-4 h-4 text-[#10B981] shrink-0" />
                       <span>Copied!</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="w-4 h-4 text-[#9CA3AF]" />
-                      <span>{portfolioData.personal.email}</span>
+                      <Copy className="w-4 h-4 text-[#9CA3AF] shrink-0" />
+                      <span className="truncate max-w-[200px] sm:max-w-none">{portfolioData.personal.email}</span>
                     </>
                   )}
                 </button>
