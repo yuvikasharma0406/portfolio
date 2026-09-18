@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Yuvika Sharma — Branding × Content × Creative Strategy
 
-## Getting Started
+> **Portfolio Website for Yuvika Sharma**  
+> MBA in Marketing (Narayana Business School) · Brand Communicator · Content Strategist · Creative Director
 
-First, run the development server:
+A bespoke, editorial portfolio designed to showcase strategic brand positioning, multi-account campaign leadership, short-form video storytelling, and empirical consumer research.
+
+---
+
+## 🌟 Highlights & Featured Work
+
+* **TEDxNarayanaBusinessSchool**: Built digital brand identity from scratch, scaling organic reach to **600K+** in Month 1.
+* **Vacha.inc Agency Direction**: Managed brand communication, video scriptwriting, and creator campaigns independently across **7+ client brands** (including Mission Health).
+* **NBS Social Media Committee**: Orchestrated campus branding, event story campaigns, and trend-jacking formats.
+* **Empirical Market Research**: Field study analyzing dynamic pricing and consumer bargaining psychology in informal street markets.
+* **OCTAPACE Cultural Audit**: 8-dimensional internal organizational branding analysis for Satvam Nutrifoods Ltd.
+
+---
+
+## 🎨 Design Philosophy & Aesthetic
+
+* **Editorial & Restrained**: Warm off-white background (`#FAF8F5`), near-black typography (`#121316`), and a single vibrant accent (`#FF3E1D`).
+* **Typography**: Strong display serif headings (*Playfair Display*) paired with high-legibility modern sans-serif body copy (*Plus Jakarta Sans*).
+* **Tactile Micro-Interactions**: Purposeful motion with Framer Motion, accessible `:focus-visible` rings, and full `prefers-reduced-motion` compliance.
+* **Zero Backend Overhead**: Native `mailto:` communication flow eliminating third-party latency and data storage risks.
+
+---
+
+## 🛠️ Tech Stack & Architecture
+
+* **Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+* **Language**: [TypeScript](https://www.typescriptlang.org/)
+* **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+* **Animations**: [Framer Motion](https://www.framer.com/motion/)
+* **Icons**: [Lucide React](https://lucide.dev/)
+* **Fonts**: `next/font/google` (Playfair Display & Plus Jakarta Sans)
+* **SEO & Social**: Automated `sitemap.xml`, `robots.txt`, dynamic OpenGraph cards, and `schema.org/Person` JSON-LD structured data.
+
+---
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+portfolio/
+├── app/
+│   ├── about/            # About page (narrative, competencies, observations)
+│   ├── contact/          # Direct contact page with pre-filled email trigger
+│   ├── experience/       # Professional timeline & verified leadership ledger
+│   ├── work/             # Work index & multi-category filter
+│   │   └── [slug]/       # Dynamic case study architecture
+│   ├── globals.css       # Design tokens, variables & accessibility styles
+│   ├── layout.tsx        # Root layout, JSON-LD Schema & OpenGraph metadata
+│   ├── page.tsx          # Homepage with editorial hero & snapshot modules
+│   ├── robots.ts         # Search engine crawler configuration
+│   └── sitemap.ts        # Dynamic XML sitemap generator
+├── components/           # Modular design system components
+│   ├── motion/           # Framer motion utilities & easing curves
+│   ├── Button.tsx        # Accessible interactive button with micro-interactions
+│   ├── ContactCTA.tsx    # Global contact trigger module
+│   ├── Footer.tsx        # Minimal editorial footer
+│   ├── Hero.tsx          # Large display typography hero
+│   ├── Navbar.tsx        # Responsive header with animated mobile drawer
+│   ├── ProjectCard.tsx   # Detailed & compact project card variants
+│   └── WhatIDo.tsx       # 4 core capabilities breakdown
+├── data/
+│   └── portfolio.ts      # Structured portfolio dataset (case studies, bio, metrics)
+└── public/               # Static assets & PDF Resume
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1. Clone the repository
+```bash
+git clone https://github.com/yuvikasharma0406/portfolio.git
+cd portfolio
+```
 
-## Learn More
+### 2. Install dependencies
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 3. Start local development server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the site locally.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Build for production
+```bash
+npm run build
+```
+Prerenders all 15 routes into optimized static HTML (SSG).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📄 License & Contact
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Designed & built for **Yuvika Sharma**.  
+- **Email**: [yuvika.mba25@nbs.edu.in](mailto:yuvika.mba25@nbs.edu.in)  
+- **LinkedIn**: [linkedin.com/in/yuvika-sharma-676132354](https://www.linkedin.com/in/yuvika-sharma-676132354/)
